@@ -13,7 +13,7 @@ SECRET_KEY = "development_secret_key"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/token", auto_error=False)
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
@@ -52,6 +52,15 @@ async def get_current_user(
 async def get_current_user_or_dummy(
     db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
 ):
+    if token is None:
+        dummy_user = User(
+            id=1,
+            username="dummy_user",
+            email="dummy@example.com",
+            hashed_password="dummy_password",
+        )
+        return dummy_user
+    
     try:
         return await get_current_user(token, db)
     except HTTPException:

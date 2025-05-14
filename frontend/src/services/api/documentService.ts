@@ -29,6 +29,7 @@ const documentService = {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
+      withCredentials: true,
     });
     
     return response.data;
@@ -44,23 +45,30 @@ const documentService = {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
+      withCredentials: true,
     });
     
     return response.data;
   },
   
   getDocument: async (id: number): Promise<Document> => {
-    const response = await axios.get(`${API_ENDPOINT}/${id}`);
+    const response = await axios.get(`${API_ENDPOINT}/${id}`, {
+      withCredentials: true,
+    });
     return response.data;
   },
   
   listDocuments: async (skip = 0, limit = 100): Promise<DocumentListResponse> => {
-    const response = await axios.get(`${API_ENDPOINT}?skip=${skip}&limit=${limit}`);
+    const response = await axios.get(`${API_ENDPOINT}?skip=${skip}&limit=${limit}`, {
+      withCredentials: true,
+    });
     return response.data;
   },
   
   deleteDocument: async (id: number): Promise<boolean> => {
-    const response = await axios.delete(`${API_ENDPOINT}/${id}`);
+    const response = await axios.delete(`${API_ENDPOINT}/${id}`, {
+      withCredentials: true,
+    });
     return response.data.success;
   },
 };
