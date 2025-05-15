@@ -1,4 +1,4 @@
-app = "llm-train-platform-lbcxtozf"
+app = "arabic-pdf-training-backend"
 primary_region = "sea"
 
 [build]
