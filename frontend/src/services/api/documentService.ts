@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_URL = process.env.REACT_APP_API_URL || 'https://llm-train-platform-lbcxtozf.fly.dev';
 const API_ENDPOINT = `${API_URL}/api/documents`;
 
 export interface Document {
