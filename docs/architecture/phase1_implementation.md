@@ -2,6 +2,29 @@
 
 This document provides a detailed implementation plan for Phase 1 of the Arabic PDF Processing and LLM Training Platform.
 
+## Deployment Information
+
+The Phase 1 implementation has been successfully deployed and is available at the following URLs:
+
+- **Frontend Application**: [https://arabic-ocr-training-app-4q55d1e3.devinapps.com](https://arabic-ocr-training-app-4q55d1e3.devinapps.com)
+- **Backend API**: [https://llm-train-platform-lbcxtozf.fly.dev](https://llm-train-platform-lbcxtozf.fly.dev)
+
+### How to Use the Platform
+
+1. Open the frontend URL in your browser
+2. Use the file upload interface to upload your Arabic PDF documents
+3. You can upload single files or multiple files at once
+4. View your uploaded documents in the document list
+5. The platform will automatically detect if your PDF is scanned or searchable
+
+### Implemented Features
+
+- Secure file upload with validation
+- Bulk upload capability
+- Document management (view, edit, delete)
+- Storage configuration
+- Basic PDF information extraction
+
 ## Overview
 
 Phase 1 focuses on developing a user-friendly web interface for secure uploading of PDF files (both scanned and searchable), supporting bulk uploads, implementing validation, designing secure storage solutions, and providing functionalities for managing uploaded datasets.
