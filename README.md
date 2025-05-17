@@ -28,6 +28,7 @@ The platform is built with a modular architecture, divided into the following ph
 8. **Administrative and User Interfaces**
 
 Each phase is implemented as a separate module with well-defined interfaces, allowing for independent development, testing, and deployment.
+After uploading a document, send `POST /api/ocr/{document_id}` to extract text from each page.
 
 ## Technology Stack
 

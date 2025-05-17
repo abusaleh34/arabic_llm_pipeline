@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 
 from app.api.routes import document
+from app.api.routes import ocr
 from app.db.session import engine
 from app.db.base import Base
 
@@ -28,6 +29,7 @@ app.add_middleware(
 )
 
 app.include_router(document.router, prefix="/api/documents", tags=["documents"])
+app.include_router(ocr.router, prefix="/api/ocr", tags=["ocr"])
 
 @app.get("/health", tags=["health"])
 async def health_check():
