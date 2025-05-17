@@ -41,7 +41,7 @@ from enum import Enum
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 
-from backend.db.base import Base
+from app.db.base import Base
 
 
 class DocumentStatus(str, Enum):
@@ -95,9 +95,9 @@ from typing import List, Optional
 from fastapi import UploadFile, HTTPException
 from sqlalchemy.orm import Session
 
-from backend.models.document import Document, DocumentStatus, DocumentType
-from backend.utils.storage import save_file, delete_file
-from backend.utils.pdf_utils import get_pdf_info
+from app.models.document import Document, DocumentStatus, DocumentType
+from app.utils.storage import save_file, delete_file
+from app.utils.pdf_utils import get_pdf_info
 
 
 class DocumentService:
@@ -321,11 +321,11 @@ from typing import List
 from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException
 from sqlalchemy.orm import Session
 
-from backend.db.session import get_db
-from backend.models.document import Document
-from backend.services.upload.document_service import DocumentService
-from backend.api.deps import get_current_user
-from backend.schemas.document import DocumentCreate, DocumentResponse, DocumentList
+from app.db.session import get_db
+from app.models.document import Document
+from app.services.upload.document_service import DocumentService
+from app.api.deps import get_current_user
+from app.schemas.document import DocumentCreate, DocumentResponse, DocumentList
 
 router = APIRouter()
 
