@@ -171,12 +171,19 @@ def test_delete_document(client: TestClient, test_pdf: str):
     
     upload_data = response.json()
     document_id = upload_data["id"]
-    
+    file_path = upload_data["file_path"]
+
+    # ensure the uploaded file exists before deletion
+    assert os.path.exists(file_path)
+
     response = client.delete(f"/api/documents/{document_id}")
-    
+
     assert response.status_code == 200
     assert response.json()["success"] is True
-    
+
+    # file should be removed from the upload directory
+    assert not os.path.exists(file_path)
+
     response = client.get(f"/api/documents/{document_id}")
     assert response.status_code == 404
 
