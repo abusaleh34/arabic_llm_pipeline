@@ -47,3 +47,15 @@ After uploading a document, send `POST /api/ocr/{document_id}` to extract text f
 ## License
 
 [License information will be added]
+
+## Staging Deployment
+
+A helper script is provided to deploy the current commit to a temporary staging environment. The script builds Docker images, provisions a docker-compose stack and runs health checks.
+
+```bash
+scripts/deploy_staging.sh
+```
+
+Deployment logs and summaries are stored under `deployments/<commit-sha>/`.
+
+The script expects Docker and docker-compose to be available and uses `.env.staging` for environment variables.

@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  backend:
+    image: internal.registry/arabic-llm-backend:${COMMIT_SHA}
+    environment:
+      - DATABASE_URL=postgresql://user:pass@db:5432/app
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+  worker:
+    image: internal.registry/arabic-llm-worker:${COMMIT_SHA}
+    depends_on:
+      - db
+  migrations:
+    image: internal.registry/arabic-llm-migrations:${COMMIT_SHA}
+    depends_on:
+      - db
+  frontend:
+    image: internal.registry/arabic-llm-frontend:${COMMIT_SHA}
+    ports:
+      - "8080:80"
+volumes:
+  db_data:
