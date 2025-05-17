@@ -187,14 +187,14 @@ class DocumentService:
         """
         document = await self.get_document(document_id, user_id)
         
-        # Delete file from storage
-        await delete_file(document.file_path)
+        # Delete file from storage and capture result
+        delete_success = await delete_file(document.file_path)
         
         # Delete document record
         self.db.delete(document)
         self.db.commit()
-        
-        return True
+
+        return delete_success
 
     async def bulk_upload_documents(self, files: List[UploadFile], user_id: int) -> List[Document]:
         """
